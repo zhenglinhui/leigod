@@ -8,7 +8,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const fetch = require('node-fetch');
 const md5 = require('js-md5');
 const userinfo = process.env.LEISHEN_USER || 'username=&password=';
-const repeat_notify = process.env.LEISHEN_REPEAT_NOTIFY || true;
+const repeat_notify = String(process.env.LEISHEN_REPEAT_NOTIFY || 'true').toLocaleLowerCase() === 'true';
 const Secrets = {
     username: userinfo.split('&')[0].split('=')[1].trim(),
     password: md5(userinfo.split('&')[1].split('=')[1].trim()),
@@ -59,6 +59,7 @@ const user = {
         }).then((res) => res.json());
     })
     .then((res) => {
+        console.log(res)
         // 400803 账号已经停止加速，请不要重复操作
         if (res.code === 400803) {
             if (repeat_notify) notify.sendNotify('LeiGod_Acc SUCCEED PAUSE', res.msg);
