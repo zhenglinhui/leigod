@@ -1,0 +1,14 @@
+{
+  "name": "leigod",
+  "version": "1.0.0",
+  "description": "LeiGod_Acc auto pause",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node index.js"
+  },
+  "author": "zlh",
+  "dependencies": {
+    "js-md5": "^0.7.3",
+    "node-fetch": "^2.6.1"
+  }
+}
